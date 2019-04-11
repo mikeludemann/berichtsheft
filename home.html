@@ -1,0 +1,80 @@
+<?php
+include("connect.php");
+
+$email = isset($_POST["email"]) ? trim($_POST["email"]) : '';
+$was = isset($_GET["was"]) ? trim($_GET["was"]) : '';
+
+if(isset($_SESSION['email']))
+{
+    if($_SESSION['email'] != 'test@test.com'){
+    echo' <script type="text/javascript">
+          function weiterleiten()
+          {
+          self.location.href="historie.php?was=status";
+          }
+          window.setTimeout("weiterleiten()",0);
+          </script>';
+    } if($_SESSION['email'] == 'test@test.com'){
+    echo' <script type="text/javascript">
+          function weiterleiten()
+          {
+          self.location.href="beobachter.php?was=status";
+          }
+          window.setTimeout("weiterleiten()",0);
+          </script>';
+    } 
+} else {
+?>
+
+<html>
+    <head>
+        <title>Home - Berichtsheft</title>
+        <link rel="stylesheet" type="text/css" href="format.css">
+    </head>
+    <div id="content">
+        <div class="abstand_content_home">
+            <div class="ueberschrift">Berichtsheft</div>
+                <div class="abstand_4">
+                    <table class="w100">
+                        <tr>
+                            <td class="w33 top">
+                                <div class="header_group abstand_group">
+                                    Information
+                                </div>
+                                <div class="header_undergroup abstand_group_2">
+                                Die Webseite für Auszubildende.<br/>
+                                Berichtsheftführung für eine Ausbildung in digitaler Form.
+                                </div>
+                            </td>
+                            <td class="w33 top">
+                                <div class="header_group abstand_group">
+                                    Help
+                                </div>
+                                <div class="header_undergroup abstand_group">
+                                    Diese Seite ist für viele Auszubildende und Ausbilder sehr praktisch.<br/>
+                                    Sie sparen dadurch kostbare Zeit und die Benutzung und Steuerung ist leicht und komfortabel.
+                                </div>
+                            </td>
+                            <td class="w33 top">
+                                <div class="header_group abstand_group">
+                                    Support
+                                </div>
+                                <div class="header_undergroup abstand_group_3">
+                                    support@xyz.com
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            <div class="right links_blue">
+                <a class="links_blue" href="login.php">Anmeldung</a>
+                    &nbsp;|&nbsp;
+                <a class="links_blue" href="registration.php">Registrierung</a>
+            </div>
+        </div>
+    </div>
+</html>
+
+<?php
+}
+?>
